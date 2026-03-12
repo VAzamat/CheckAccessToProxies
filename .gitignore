@@ -85,3 +85,9 @@ local_settings.py
 
 ### AI ###
 .ai_log/
+
+### FOR THIS PROJECT ONLY
+
+prooven_proxies.dat
+socks4.txt
+socks5.txt
