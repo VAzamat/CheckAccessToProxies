@@ -11,6 +11,6 @@
 
 git add .
 
-git commit -m "today file with proxies"
+git commit -m "today file with proxies `date +%Y%m%d`"
 
 git push
