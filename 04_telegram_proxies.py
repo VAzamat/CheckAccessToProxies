@@ -45,7 +45,11 @@ user_agents = [
 random_user_agent = random.choice(user_agents)
 
 
-outText = ""
+outText = """
+go to https://mtproto.ru/personal.php and generate
+
+"""
+
 for i in range(10):
     cmd = f'curl -s  -A "{random_user_agent}" https://mtproto.ru/personal.php'
     time.sleep(10)
@@ -55,7 +59,7 @@ for i in range(10):
     for link in links:
         if link.find("tg://proxy")>-1:
             outText += "\n".join(link.replace("tg://proxy?","").replace("&"," ").replace("="," ").split() )
-            outText += "\n\n"
+            outText += "\n{}\n\n".format(link)
 
 with codecs.open("telegram_proxy.dat", 'w', encoding='utf-8') as fp:
     fp.write( outText )
