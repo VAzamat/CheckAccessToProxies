@@ -59,7 +59,7 @@ for i in range(10):
     for link in links:
         if link.find("tg://proxy")>-1:
             outText += "\n".join(link.replace("tg://proxy?","").replace("&"," ").replace("="," ").split() )
-            outText += "\n{}\n\n".format(link)
+            outText += "\n\n{}\n\n".format(link)
 
 with codecs.open("telegram_proxy.dat", 'w', encoding='utf-8') as fp:
     fp.write( outText )
