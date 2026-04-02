@@ -9,6 +9,8 @@
 
 ./03_copy.sh
 
+./04_telegram_proxies.py
+
 git add .
 
 git commit -m "today file with proxies `date +%Y%m%d`"
