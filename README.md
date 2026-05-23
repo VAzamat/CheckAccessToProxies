@@ -16,3 +16,5 @@ git add .
 git commit -m "today file with proxies `date +%Y%m%d`"
 
 git push
+
+./01_firststep.py && ./02_secondstep.py && ./03_copy.sh && git add . && git commit -m "today file with proxies `date +%Y%m%d`" && git push

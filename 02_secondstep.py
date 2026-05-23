@@ -38,7 +38,7 @@ for i,proxy in enumerate(proxies):
  url = "https://www.youtube.com/shorts/1E9lAYmhnVQ"
  delay = i % 30
  bash_commands_list.append(
- f'sleep {i} && source ./env/bin/activate && yt-dlp -f 139 --proxy "{proxy}"  --output "/dev/null" "{url}" > /dev/null && [[ "$?" == "0" ]]   &&  echo {proxy} >> prooven_proxies_yt.dat'
+ f'sleep {i} && source ./env/bin/activate && yt-dlp -f 139 --proxy "{proxy}"  --socket-timeout 60 --retries 20  --output "/dev/null" "{url}" > /dev/null && [[ "$?" == "0" ]]   &&  echo {proxy} >> prooven_proxies_yt.dat'
  )
 
 print( bash_commands_list )
