@@ -42,8 +42,8 @@ for t in threads:
 
 
 proxies = []
-proxies += open("socks5.txt").read(-1).split("\n")[0:200]
-proxies += open("socks4.txt").read(-1).split("\n")[0:200]
+proxies += open("socks5.txt").read(-1).split("\n")[0:400]
+proxies += open("socks4.txt").read(-1).split("\n")[0:400]
 print( proxies)
 
 bash_commands_list = [
@@ -52,7 +52,7 @@ bash_commands_list = [
 for i,proxy in enumerate(proxies):
  delay = random.randint(2,20)
  bash_commands_list.append(
- f'sleep {delay} && curl -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36" --silent --connect-timeout 180 --output /dev/null --proxy "{proxy}" "http://example.com/{i}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
+ f'sleep {delay} && curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 60 --output /dev/null --proxy "{proxy}" "http://example.com/{i}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
  )
 
 
