@@ -42,8 +42,8 @@ for t in threads:
 
 
 proxies = []
-proxies += open("socks5.txt").read(-1).split("\n")[0:400]
-proxies += open("socks4.txt").read(-1).split("\n")[0:400]
+proxies += open("socks5.txt").read(-1).split("\n")[0:450]
+proxies += open("socks4.txt").read(-1).split("\n")[0:450]
 print( proxies)
 
 bash_commands_list = [
