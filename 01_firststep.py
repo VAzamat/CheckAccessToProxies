@@ -7,6 +7,17 @@ import os
 import random
 
 
+sites = [
+"https://www.nperf.com/",
+"https://skyeng.ru/",
+"https://vk.com/",
+"https://www.litres.ru/",
+"https://www.wikipedia.org/",
+"https://ru.wikipedia.org/",
+"https://en.wikipedia.org/",
+"https://de.wikipedia.org/",
+"https://it.wikipedia.org/"
+]
 os.system('rm -f prooven_proxies.dat')
 
 def run_command(cmd):
@@ -24,7 +35,8 @@ def run_command(cmd):
 
 bash_commands_list = [
     f'rm -f socks5.txt && curl -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36" -sL https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/socks5/data.txt -o socks5.txt',
-    f'rm -f socks4.txt && curl -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36" -sL https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/socks4/data.txt -o socks4.txt'
+    f'rm -f socks4.txt && curl -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36" -sL https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/socks4/data.txt -o socks4.txt',
+    f'rm -f usaproxy.txt && curl -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (K HTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36" -sL https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/countries/US/data.txt -o usaproxy.txt'
 ]
 
 threads = []
@@ -44,6 +56,8 @@ for t in threads:
 proxies = []
 proxies += open("socks5.txt").read(-1).split("\n")
 proxies += open("socks4.txt").read(-1).split("\n")
+proxies += open("usaproxy.txt").read(-1).split("\n")
+
 print( proxies)
 
 bash_commands_list = [
@@ -51,8 +65,10 @@ bash_commands_list = [
 
 for i,proxy in enumerate(proxies):
  delay = random.randint(2,20)
+ url = sites[i%len(sites)]
  bash_commands_list.append(
- f'sleep {delay} && curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 60 --output /dev/null --proxy "{proxy}" "http://example.com/{i}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
+# f'sleep {delay} && curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 180 --output /dev/null --proxy "{proxy}" "http://example.com/{i}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
+ f'sleep {delay} && curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 180 --output /dev/null --proxy "{proxy}" "{url}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
  )
 
 

@@ -91,3 +91,5 @@ local_settings.py
 prooven_proxies.dat
 socks4.txt
 socks5.txt
+usaproxy.txt
+
