@@ -68,7 +68,10 @@ for i,proxy in enumerate(proxies):
  url = sites[i%len(sites)]
  bash_commands_list.append(
 # f'sleep {delay} && curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 180 --output /dev/null --proxy "{proxy}" "http://example.com/{i}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
- f'sleep {delay} && curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 180 --output /dev/null --proxy "{proxy}" "{url}" && [[ "$?" == "0" ]]  && echo {proxy} >> prooven_proxies.dat'
+ f'sleep {delay} && ' +
+ f'curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 10 --max-time 15 --output /dev/null --proxy "{proxy}" "https://ifconfig.me" && '+
+ f'curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0" --silent --connect-timeout 180 --output /dev/null --proxy "{proxy}" "{url}" && [[ "$?" == "0" ]]  && ' +
+ f'echo {proxy} >> prooven_proxies.dat'
  )
 
 
